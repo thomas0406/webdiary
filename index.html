@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tomwamwa</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="neon-grid"></div>
+        <div class="floating-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-moon"></i>
+            <span class="logo-text">DIARY</span>
+        </div>
+        <nav class="nav">
+            <button id="visitorBtn" class="nav-btn">
+                <i class="fas fa-eye"></i> Visitor
+            </button>
+            <button id="homeBtn" class="nav-btn active">
+                <i class="fas fa-home"></i> Home
+            </button>
+            <button id="newDiaryBtn" class="nav-btn admin-only">
+                <i class="fas fa-plus"></i> Tulis Diary
+            </button>
+            <button id="adminBtn" class="nav-btn">
+                <i class="fas fa-user-shield"></i> Admin
+            </button>
+            <button id="logoutBtn" class="nav-btn admin-only hidden">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- Admin Login Section -->
+        <section id="loginSection" class="section">
+            <div class="form-container">
+                <h2 class="form-title">
+                    <span class="glow-text">Admin Login</span>
+                </h2>
+                <form id="loginForm" class="diary-form">
+                    <div class="form-group">
+                        <label for="adminPassword">
+                            <i class="fas fa-lock"></i> Password Admin
+                        </label>
+                        <input type="password" id="adminPassword" name="password" 
+                               placeholder="Masukkan password admin..." required
+                               class="neon-input">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="cancelLoginBtn" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </div>
+                </form>
+                <p class="login-hint">Hint: Password default adalah "neondiary123"</p>
+            </div>
+        </section>
+
+        <!-- Home Section - Diary List -->
+        <section id="homeSection" class="section active">
+            <div class="section-header">
+                <h1 class="title">
+                    <span class="glow-text">My Diary</span>
+                </h1>
+                <p class="subtitle">Kenangan tersimpan dalam cahaya</p>
+            </div>
+            
+            <div id="diaryList" class="diary-grid">
+                <!-- Diary cards will be inserted here -->
+            </div>
+            
+            <div id="emptyState" class="empty-state hidden">
+                <i class="fas fa-book-open"></i>
+                <h2>Belum Ada Diary</h2>
+                <p>Mulai tulis pengalaman pertamamu!</p>
+            </div>
+        </section>
+
+        <!-- Visitor Section - Read Only -->
+        <section id="visitorSection" class="section">
+            <div class="section-header">
+                <h1 class="title">
+                    <span class="glow-text">Public Diary</span>
+                </h1>
+                <p class="subtitle">Diary yang dapat dilihat semua orang</p>
+            </div>
+            
+            <div id="visitorDiaryList" class="diary-grid">
+                <!-- Visitor diary cards will be inserted here -->
+            </div>
+            
+            <div id="visitorEmptyState" class="empty-state hidden">
+                <i class="fas fa-book-open"></i>
+                <h2>Belum Ada Diary</h2>
+                <p>Silakan kembali lain kali!</p>
+            </div>
+        </section>
+
+        <!-- Write Diary Section -->
+        <section id="writeSection" class="section">
+            <div class="form-container">
+                <h2 class="form-title">
+                    <span class="glow-text">Tulis Diary Baru</span>
+                </h2>
+                <form id="diaryForm" class="diary-form">
+                    <div class="form-group">
+                        <label for="diaryTitle">
+                            <i class="fas fa-heading"></i> Judul
+                        </label>
+                        <input type="text" id="diaryTitle" name="title" 
+                               placeholder="Judul diary..." required
+                               class="neon-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="diaryDate">
+                            <i class="fas fa-calendar"></i> Tanggal
+                        </label>
+                        <input type="date" id="diaryDate" name="date" 
+                               required class="neon-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="diaryMood">
+                            <i class="fas fa-smile"></i> Suasana Hati
+                        </label>
+                        <div class="mood-selector">
+                            <button type="button" class="mood-btn" data-mood="happy">
+                                <i class="fas fa-smile-beam"></i>
+                            </button>
+                            <button type="button" class="mood-btn" data-mood="love">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button type="button" class="mood-btn" data-mood="sad">
+                                <i class="fas fa-sad-tear"></i>
+                            </button>
+                            <button type="button" class="mood-btn" data-mood="angry">
+                                <i class="fas fa-angry"></i>
+                            </button>
+                            <button type="button" class="mood-btn" data-mood="cool">
+                                <i class="fas fa-meh"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" id="diaryMood" name="mood" value="happy">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="diaryContent">
+                            <i class="fas fa-pen"></i> Isi Diary
+                        </label>
+                        <textarea id="diaryContent" name="content" 
+                                  placeholder="Tulis pengalamanmu di sini..." 
+                                  required class="neon-textarea"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="diaryTags">
+                            <i class="fas fa-tags"></i> Tags
+                        </label>
+                        <input type="text" id="diaryTags" name="tags" 
+                               placeholder="Pisahkan dengan koma (mis: keluarga, kerja)" 
+                               class="neon-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="diaryPublic" name="isPublic">
+                            <span class="checkmark"></span>
+                            <i class="fas fa-globe"></i> Jadikan Diary Public (dapat dilihat visitor)
+                        </label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="cancelBtn" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- View Diary Section -->
+        <section id="viewSection" class="section">
+            <div class="view-container">
+                <button id="backBtn" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </button>
+                
+                <article id="diaryDetail" class="diary-detail">
+                    <!-- Diary detail will be inserted here -->
+                </article>
+                
+                <div class="diary-actions admin-only-actions">
+                    <button id="editDiaryBtn" class="btn btn-secondary">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button id="deleteDiaryBtn" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Hapus
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>✨ Neon Diary - Dibuat dengan <i class="fas fa-heart"></i> ✨</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js"></script>
+    
+    <!-- App Script -->
+    <script src="js/app.js"></script>
+</body>
+</html>
