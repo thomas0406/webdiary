@@ -18,7 +18,8 @@ const firebaseConfig = {
   storageBucket: "diary-web-d4d6f.firebasestorage.app",
   messagingSenderId: "89292692627",
   appId: "1:89292692627:web:4168f9a0ebec10d7db0166",
-  measurementId: "G-W510344SXY"
+  measurementId: "G-W510344SXY",
+  databaseURL: "https://diary-web-d4d6f.firebaseio.com"
 };
 
 // Firebase variables
